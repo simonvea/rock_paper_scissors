@@ -2,8 +2,6 @@
 <html>
     <script>
         var hand = ["STEN", "SAKS", "PAPIR"]
-        var playerSelection = prompt("Hva velger du?");
-        const computerSelection = computerPlay();
 
         function computerPlay() {
             let compHand = hand[Math.floor(Math.random() * hand.length)];
@@ -19,37 +17,39 @@
 
             if (playerSelection == computerSelection) {
 
-                return "Begge valgte " + playerSelection + "! Uavgjort!"
+                console.log("Begge valgte " + playerSelection + "! Uavgjort!")
 
             } else if (playerSelection == "SAKS") {
 
                 if (computerSelection == "STEN") {
-                    return "Du tapte! Sten slår saks!"
+                    console.log("Du tapte! Sten slår saks!")
                 } else {
-                    return "Du VANT! Saks slår papir!"
+                    console.log("Du VANT! Saks slår papir!")
                 }
             } else if (playerSelection == "STEN") {
 
                 if (computerSelection == "PAPIR") {
 
-                    return "Du tapte! Papir slår sten!"
+                    console.log("Du tapte! Papir slår sten!")
 
                 } else {
-                    return "Du VANT! Saks slår papir!"
+                    console.log("Du VANT! Saks slår papir!")
                 }
             } else {
                 if (computerSelection == "SAKS") {
 
-                    return "Du tapte! Saks slår papir!"
+                    console.log("Du tapte! Saks slår papir!")
 
                 } else {
-                    return "Du VANT! Sten slår saks!"
+                    console.log("Du VANT! Sten slår saks!")
                 }
             }
         }
 
-        
-        
+        var game = (runder) => {
+            for (var i = 0; i < parseInt(runder, 10); i++)
+            playRound(prompt("Hva velger du?"), computerPlay())
+        };
 
     </script>
 </html>
