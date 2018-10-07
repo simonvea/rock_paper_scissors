@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html>
     <script>
-        
+        var hand = ["STEN", "SAKS", "PAPIR"]
+        var playerSelection = prompt("Hva velger du?");
+        const computerSelection = computerPlay();
+
         function computerPlay() {
-            let hand = ["sten", "saks", "papir"],
-            compHand = hand[Math.floor(Math.random() * hand.length)];
+            let compHand = hand[Math.floor(Math.random() * hand.length)];
             return compHand
         }
-        console.log("Pcen velger: " + computerPlay())
+
+        function playRound(playerSelection, computerSelection) {
+
+            console.log("Pcen velger: " + computerSelection);
+            console.log("Du har valgt: " + playerSelection)
+
+            playerSelection = playerSelection.toUpperCase();
+
+            if (playerSelection == computerSelection) {
+
+                return "Begge valgte " + playerSelection + "! Uavgjort!"
+
+            } else if (playerSelection == "SAKS") {
+
+                if (computerSelection == "STEN") {
+                    return "Du tapte! Sten slår saks!"
+                } else {
+                    return "Du VANT! Saks slår papir!"
+                }
+            } else if (playerSelection == "STEN") {
+
+                if (computerSelection == "PAPIR") {
+
+                    return "Du tapte! Papir slår sten!"
+
+                } else {
+                    return "Du VANT! Saks slår papir!"
+                }
+            } else {
+                if (computerSelection == "SAKS") {
+
+                    return "Du tapte! Saks slår papir!"
+
+                } else {
+                    return "Du VANT! Sten slår saks!"
+                }
+            }
+        }
+
+        
+        
+
     </script>
 </html>
