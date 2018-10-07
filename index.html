@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
     <script>
-    
+        
+        function computerPlay() {
+            let hand = ["sten", "saks", "papir"],
+            compHand = hand[Math.floor(Math.random() * hand.length)];
+            return compHand
+        }
+        console.log("Pcen velger: " + computerPlay())
     </script>
 </html>
