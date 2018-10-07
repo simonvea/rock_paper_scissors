@@ -2,16 +2,18 @@
 <html>
     <script>
         var hand = ["STEN", "SAKS", "PAPIR"]
+        var compScore = 0;
+        var playerScore = 0;
 
         function computerPlay() {
             let compHand = hand[Math.floor(Math.random() * hand.length)];
-            return compHand
+            return compHand;
         }
 
         function playRound(playerSelection, computerSelection) {
 
             console.log("Pcen velger: " + computerSelection);
-            console.log("Du har valgt: " + playerSelection)
+            console.log("Du har valgt: " + playerSelection);
 
             playerSelection = playerSelection.toUpperCase();
 
@@ -22,33 +24,48 @@
             } else if (playerSelection == "SAKS") {
 
                 if (computerSelection == "STEN") {
-                    console.log("Du tapte! Sten slår saks!")
+                    console.log("Du tapte! Sten slår saks!");
+                    return compScore +=1;
                 } else {
-                    console.log("Du VANT! Saks slår papir!")
+                    console.log("Du VANT! Saks slår papir!");
+                    return playerScore +=1;
                 }
             } else if (playerSelection == "STEN") {
 
                 if (computerSelection == "PAPIR") {
 
-                    console.log("Du tapte! Papir slår sten!")
+                    console.log("Du tapte! Papir slår sten!");
+                    return compScore +=1;
 
                 } else {
-                    console.log("Du VANT! Saks slår papir!")
+                    console.log("Du VANT! Saks slår papir!");
+                    return playerScore +=1;
                 }
             } else {
                 if (computerSelection == "SAKS") {
 
-                    console.log("Du tapte! Saks slår papir!")
+                    console.log("Du tapte! Saks slår papir!");
+                    return compScore +=1;
 
                 } else {
-                    console.log("Du VANT! Sten slår saks!")
+                    console.log("Du VANT! Sten slår saks!");
+                    return playerScore +=1;
                 }
             }
         }
 
         var game = (runder) => {
-            for (var i = 0; i < parseInt(runder, 10); i++)
+            for (var i = 0; i < parseInt(runder, 10); i++) {
             playRound(prompt("Hva velger du?"), computerPlay())
+            }
+            console.log("Total score: PC: " + compScore + ". Du: " + playerScore + ".");
+
+            if (playerScore > compScore) {
+                console.log("Det betyr at DU vant!");
+            } else if ( playerScore == compScore) {
+                console.log("Det betyr at det er uavgjort! Spill igjen!");
+            } else {
+                console.log("Det betyr at PCen vant! :(");                }
         };
 
     </script>
