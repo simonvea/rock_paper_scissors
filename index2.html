@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    
+<button id="sten">Sten</button>
+<button id="saks">Saks</button>
+<button id="papir">Papir</button>
+
+<div id="resultater"></div>
+
+
+    <script>
+
+        // buttons is a node list. It looks and acts much like an array.
+        const buttons = document.querySelectorAll('button');
+
+        // we use the .forEach method to iterate through each button
+        buttons.forEach((button) => {
+
+            button.addEventListener('click', (e) => {
+                checkWinner();
+                playRound(button.id, computerPlay());
+                updateScore();
+                decleareWinner();
+            });
+        });
+
+        function updateScore() {
+            score.textContent = "Total score: PC: " + compScore + ". Du: " + playerScore + ".";
+            resultater.appendChild(score);
+        };
+
+        function checkWinner() {
+            if (compScore >= 5 || playerScore >= 5) {
+                compScore = 0;
+                playerScore = 0;
+            }
+        };
+
+        function decleareWinner () {
+            let winnerDiv = document.createElement("div");
+            if (compScore >= 5) {
+                score.textContent = "PC vant " + compScore + " - " + playerScore;
+                resultater.appendChild(score);
+            } else if (playerScore >= 5) {
+                score.textContent = "Du vant " + playerScore + " - " + compScore;
+                resultater.appendChild(score);
+            };
+        };
+
+        const resultater = document.getElementById('resultater'); 
+        const score = document.createElement("div");
+        
+    
+        const hand = ["STEN", "SAKS", "PAPIR"]
+        let compScore = 0;
+        let playerScore = 0;
+
+        score.textContent = "Total score: PC: " + compScore + ". Du: " + playerScore + ".";
+        resultater.appendChild(score);
+
+        function computerPlay() {
+            return hand[Math.floor(Math.random() * hand.length)];
+        }
+
+        function playRound(playerSelection, computerSelection) {
+
+            
+
+            playerSelection = playerSelection.toUpperCase();
+            //let runde = document.createElement("div");
+
+            //runde.textContent = "Pcen velger: "  + computerSelection + ", mens du har valgt: " + playerSelection;
+            //resultater.appendChild(runde);
+
+            let resultat = document.createElement("div");
+
+            if (playerSelection == computerSelection) {
+
+                //resultat.textContent = "Begge valgte " + playerSelection + "! Uavgjort!";
+                //resultater.appendChild(resultat);
+                return;
+
+            } else if (playerSelection == "SAKS") {
+
+                if (computerSelection == "STEN") {
+                    //resultat.textContent = "Du tapte! Sten slår saks!";
+                    //resultater.appendChild(resultat);
+                    return compScore +=1;
+                } else {
+                    //resultat.textContent = "Du VANT! Saks slår papir!";
+                    //resultater.appendChild(resultat);
+                    return playerScore +=1;
+                }
+            } else if (playerSelection == "STEN") {
+
+                if (computerSelection == "PAPIR") {
+
+                    //resultat.textContent = "Du tapte! Papir slår sten!";
+                    //resultater.appendChild(resultat);
+                    return compScore +=1;
+
+                } else {
+                    //resultat.textContent ="Du VANT! Sten slår saks!";
+                    //resultater.appendChild(resultat);
+                    return playerScore +=1;
+                }
+            } else {
+                if (computerSelection == "SAKS") {
+
+                    //resultat.textContent = "Du tapte! Saks slår papir!";
+                    //resultater.appendChild(resultat);
+                    return compScore +=1;
+
+                } else {
+                    //resultat.textContent = "Du VANT! Sten slår saks!";
+                    //resultater.appendChild(resultat);
+                    return playerScore +=1;
+                }
+            }
+           
+        }
+
+        var game = (runder) => {
+            for (var i = 0; i < parseInt(runder, 10); i++) {
+            playRound(prompt("Hva velger du?"), computerPlay())
+            }
+            console.log("Total score: PC: " + compScore + ". Du: " + playerScore + ".");
+
+            if (playerScore > compScore) {
+                console.log("Det betyr at DU vant!");
+            } else if ( playerScore == compScore) {
+                console.log("Det betyr at det er uavgjort! Spill igjen!");
+            } else {
+                console.log("Det betyr at PCen vant! :(");                }
+        };
+
+    </script>
+</html>
